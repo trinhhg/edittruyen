@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tiện Ích Của Trịnh Hg - V23</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="brand">
+      <h1>Tiện Ích Của Trịnh Hg <span class="version-tag">V23</span></h1>
+      <div class="donate-info">MB BANK: TRINH THI XUAN HUONG - 0917678211</div>
+    </div>
+    <nav class="main-tabs">
+      <button class="tab-btn active" data-tab="tab-replace">Thay Thế & Soát Lỗi</button>
+      <button class="tab-btn" data-tab="tab-standardize">Chuẩn Hóa Hội Thoại</button>
+      <button class="tab-btn" data-tab="tab-split">Chia Chương</button>
+      <button class="tab-btn" data-tab="tab-settings">Cài Đặt & Dữ Liệu</button>
+    </nav>
+  </header>
+
+  <main class="app-body">
+
+    <div id="tab-replace" class="tab-content active">
+      <div class="split-pane-container">
+        <div class="pane input-pane">
+          <div class="pane-header">
+            <span>Văn bản gốc</span>
+            <span id="wc-input" class="badge">0 Words</span>
+          </div>
+          <textarea id="inp-replace" class="custom-scrollbar" placeholder="Dán văn bản cần xử lý vào đây..."></textarea>
+          <div class="pane-footer">
+            <button id="btn-do-replace" class="btn btn-primary full-width">⚡ THỰC HIỆN THAY THẾ</button>
+          </div>
+        </div>
+        <div class="pane output-pane">
+          <div class="pane-header">
+            <span>Kết quả</span>
+            <div class="counters">
+               <span id="badge-rep" class="badge badge-yellow">Rep: 0</span>
+               <span id="badge-caps" class="badge badge-blue">Caps: 0</span>
+            </div>
+          </div>
+          <div id="out-replace" class="output-div custom-scrollbar" contenteditable="false" data-placeholder="Kết quả..."></div>
+          <div class="pane-footer">
+            <button id="btn-copy-rep" class="btn btn-success full-width">Sao chép kết quả</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-standardize" class="tab-content">
+      <div class="std-container">
+        <div class="std-header">
+            <h3>Chọn kiểu định dạng hội thoại</h3>
+            <p>Hệ thống tự động nhận diện: <b>Dẫn truyện : "Câu thoại"</b> và định dạng lại.</p>
+        </div>
+
+        <div class="format-selection-grid">
+            <label class="format-card">
+                <div class="f-preview faded">
+                    <span class="muted">Hắn cười:</span> <span class="highlight">"Được thôi."</span>
+                </div>
+                <div class="f-control">
+                    <input type="radio" name="std-format" value="inline" checked>
+                    <span class="f-name">Cùng dòng (Inline)</span>
+                </div>
+            </label>
+
+            <label class="format-card">
+                <div class="f-preview faded">
+                    <span class="muted">Hắn cười:</span><br>
+                    <br>
+                    <span class="highlight">"Được thôi."</span>
+                </div>
+                <div class="f-control">
+                    <input type="radio" name="std-format" value="newline">
+                    <span class="f-name">Xuống dòng (Newline)</span>
+                </div>
+            </label>
+
+            <label class="format-card">
+                <div class="f-preview faded">
+                    <span class="muted">Hắn cười:</span><br>
+                    <br>
+                    <span class="highlight">- Được thôi.</span>
+                </div>
+                <div class="f-control">
+                    <input type="radio" name="std-format" value="dash">
+                    <span class="f-name">Gạch đầu dòng (Dash)</span>
+                </div>
+            </label>
+        </div>
+
+        <div class="std-editor">
+            <div class="std-row">
+                <textarea id="inp-std" class="custom-scrollbar" placeholder="Dán đoạn văn hội thoại lộn xộn vào đây..."></textarea>
+                <div class="std-actions">
+                    <button id="btn-do-std" class="btn btn-primary">Xử Lý & Chuẩn Hóa</button>
+                    <button id="btn-copy-std" class="btn btn-success">Sao Chép</button>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-split" class="tab-content">
+      <div class="split-top-bar">
+          <div class="split-mode-group">
+            <label><input type="radio" name="split-mode" value="count" checked> Chia đều (Số phần)</label>
+            <label><input type="radio" name="split-mode" value="regex"> Chia theo Regex (Chương)</label>
+          </div>
+          <div id="split-count-opts" class="chip-group">
+             <button class="chip active" data-val="2">2</button>
+             <button class="chip" data-val="3">3</button>
+             <button class="chip" data-val="4">4</button>
+             <button class="chip" data-val="5">5</button>
+             <button class="chip" data-val="10">10</button>
+          </div>
+          <div id="split-regex-opts" class="hidden">
+             <input type="text" id="inp-split-regex" placeholder="Ví dụ: ^(Chương|Chapter)\s+\d+">
+          </div>
+          <button id="btn-do-split" class="btn btn-primary">Thực Hiện Chia</button>
+      </div>
+      <div class="split-workspace">
+         <textarea id="inp-split" class="custom-scrollbar" placeholder="Dán truyện full vào đây..."></textarea>
+         <div id="out-split-container" class="custom-scrollbar"></div>
+      </div>
+    </div>
+
+    <div id="tab-settings" class="tab-content">
+      <div class="settings-layout">
+        
+        <aside class="settings-sidebar">
+            <div class="sb-title">DANH MỤC</div>
+            <button class="sb-item active" data-panel="panel-data">
+                📂 Dữ Liệu Thay Thế
+            </button>
+            <button class="sb-item" data-panel="panel-config">
+                ⚙️ Cấu Hình Tìm Kiếm
+            </button>
+            <button class="sb-item" data-panel="panel-ui">
+                🎨 Giao Diện & Font
+            </button>
+        </aside>
+
+        <div class="settings-panels">
+            
+            <div id="panel-data" class="panel active">
+                <h3>Quản Lý Dữ Liệu (Pairs)</h3>
+                <div class="data-controls">
+                    <div class="row">
+                        <label>Chọn Mode:</label>
+                        <select id="sel-mode"></select>
+                        <button id="btn-add-mode" class="btn btn-sm btn-secondary">Mới</button>
+                        <button id="btn-del-mode" class="btn btn-sm btn-danger">Xóa</button>
+                    </div>
+                    <div class="row mt-10">
+                        <button id="btn-import" class="btn btn-purple">Nhập CSV (3 cột)</button>
+                        <button id="btn-export" class="btn btn-purple">Xuất CSV</button>
+                    </div>
+                </div>
+                <div class="list-header">
+                    <span>Danh sách cặp từ</span>
+                    <button id="btn-add-pair" class="btn btn-sm btn-success">+ Thêm cặp</button>
+                </div>
+                <div id="list-pairs" class="pair-list custom-scrollbar"></div>
+                <button id="btn-save-all" class="btn btn-primary full-width mt-10">LƯU THAY ĐỔI</button>
+            </div>
+
+            <div id="panel-config" class="panel">
+                <h3>Cấu Hình Tìm Kiếm</h3>
+                <div class="config-block">
+                    <button id="tg-case" class="btn-toggle">Match Case: Tắt</button>
+                    <button id="tg-word" class="btn-toggle">Whole Word: Tắt</button>
+                    <button id="tg-caps" class="btn-toggle">Auto Caps: Tắt</button>
+                </div>
+                <div class="config-block mt-10">
+                    <label>Ngoại lệ Auto Caps (ngăn cách bằng dấu phẩy):</label>
+                    <input type="text" id="inp-exceptions" class="full-width" placeholder="jpg, png, com, vn...">
+                    <button id="btn-save-config" class="btn btn-primary mt-10">Lưu Cấu Hình</button>
+                </div>
+            </div>
+
+            <div id="panel-ui" class="panel">
+                <h3>Tùy Chỉnh Hiển Thị</h3>
+                <div class="config-block">
+                    <label>Font chữ soạn thảo:</label>
+                    <select id="sel-font" class="full-width">
+                        <option value="'Montserrat', sans-serif">Montserrat (Hiện đại)</option>
+                        <option value="'Roboto Mono', monospace">Monospace (Code)</option>
+                        <option value="'Times New Roman', serif">Times New Roman (Cổ điển)</option>
+                    </select>
+                </div>
+                <div class="config-block mt-10">
+                    <label>Kích thước chữ:</label>
+                    <select id="sel-size" class="full-width">
+                        <option value="13px">Nhỏ (13px)</option>
+                        <option value="15px" selected>Vừa (15px)</option>
+                        <option value="18px">Lớn (18px)</option>
+                        <option value="22px">Rất Lớn (22px)</option>
+                    </select>
+                </div>
+                <button id="btn-apply-ui" class="btn btn-primary mt-10">Áp Dụng</button>
+            </div>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="notify-box"></div>
+  <script src="index.js"></script>
+</body>
+</html>
